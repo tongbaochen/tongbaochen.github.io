@@ -1,232 +1,709 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="Keywords" content="blog"/>
-    <meta name="Description" content="blog"/>
-    <title>Simple</title>
-    <link rel="shortcut icon" href="/static/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tongbao Chen, Lecturer and Master's Supervisor at Guangdong Polytechnic Normal University. Research in multimodal learning, video understanding, AI security, affective computing, federated learning, and privacy protection.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Tongbao Chen (陈通宝) | Academic Homepage</title>
+  <style>
+    :root {
+      --text: #283647;
+      --muted: #687587;
+      --accent: #156e9b;
+      --border: #e3eaf0;
+      --soft: #f5f8fb;
+      --accent-soft: #edf5fa;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+    .skip {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      padding: 8px 14px;
+      background: white;
+      z-index: 10;
+    }
+    .skip:focus { top: 12px; }
+    .layout {
+      max-width: 1200px;
+      margin: auto;
+      padding: 52px 32px 30px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 62px;
+    }
+    .profile {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+    }
+    .avatar {
+      width: 154px;
+      height: 154px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      margin-bottom: 22px;
+      border: 5px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px var(--border);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 40px;
+      font-weight: 650;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    h1 {
+      margin: 0 0 3px;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: -.6px;
+    }
+    .name-cn { margin: 0 0 16px; font-size: 20px; }
+    .role { margin: 0 0 5px; color: var(--muted); font-size: 14px; }
+    .affiliation { margin: 0 0 20px; font-weight: 650; line-height: 1.6; }
+    .details { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+    .details li { margin: 8px 0; overflow-wrap: anywhere; }
+    .icon { display: inline-block; width: 22px; color: var(--muted); }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .nav a {
+      padding: 2px 9px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    .nav a:hover { background: var(--soft); text-decoration: none; }
+    .profile-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    main { min-width: 0; }
+    section { margin-bottom: 40px; }
+    h2 {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 24px;
+      line-height: 1.4;
+      letter-spacing: -.4px;
+    }
+    h3 { font-size: 16px; margin: 20px 0 10px; }
+    p { margin: 0 0 13px; }
+    .intro { font-size: 16px; }
+    .small { color: var(--muted); font-size: 13px; }
+    .callout {
+      margin-top: 18px;
+      padding: 15px 18px;
+      background: var(--soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .research-card {
+      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+    }
+    .research-card h3 {
+      margin: 0 0 5px;
+      color: var(--accent);
+      font-size: 15px;
+    }
+    .research-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .timeline { list-style: none; padding: 0; margin: 0; }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 15px;
+      padding: 8px 0;
+    }
+    .date { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .publication {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 19px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      align-self: start;
+      padding: 12px 7px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.6;
+    }
+    .paper-title { margin: 0 0 6px; font-size: 16px; line-height: 1.55; font-weight: 650; }
+    .authors { margin-bottom: 4px; font-size: 13px; }
+    .venue { margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+    .paper-links { display: flex; flex-wrap: wrap; gap: 7px; }
+    .paper-links a {
+      padding: 1px 9px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 0 7px;
+      background: var(--accent-soft);
+      border-radius: 4px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+    .grant { padding: 15px 0; border-bottom: 1px solid var(--border); }
+    .grant h3 { margin: 0 0 5px; line-height: 1.7; }
+    .grant p { margin: 0; font-size: 13px; color: var(--muted); }
+    .patents { list-style: none; margin: 0; padding: 0; counter-reset: patents; }
+    .patents li {
+      position: relative;
+      padding: 15px 0 15px 34px;
+      border-bottom: 1px solid var(--border);
+      counter-increment: patents;
+    }
+    .patents li::before {
+      content: counter(patents) ".";
+      position: absolute;
+      left: 0;
+      top: 15px;
+      color: var(--muted);
+    }
+    .patent-title { margin: 0 0 5px; font-size: 15px; font-weight: 600; line-height: 1.6; }
+    .patent-meta { margin: 0; color: var(--muted); font-size: 12px; }
+    .service-list { padding-left: 21px; margin: 0; }
+    .service-list li { margin: 6px 0; }
+    .student-programs { margin: 9px 0 15px; padding-left: 21px; }
+    footer {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+      h1 { font-size: 25px; }
+      .research-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 650px) {
+      .layout { display: block; padding: 28px 21px; }
+      .profile { position: static; margin-bottom: 36px; }
+      .avatar { width: 114px; height: 114px; font-size: 30px; }
+      .profile-note { display: none; }
+      h2 { font-size: 22px; }
+      .publication { grid-template-columns: 78px minmax(0, 1fr); gap: 12px; }
+      .timeline li { grid-template-columns: 85px minmax(0, 1fr); gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+    @media print {
+      .layout { display: block; padding: 0; }
+      .profile { position: static; margin-bottom: 22px; }
+      .avatar, .nav, .skip, .profile-note { display: none; }
+      .research-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      a { color: inherit; }
+      .publication, .grant, .patents li { break-inside: avoid; }
+    }
+  </style>
 </head>
 <body>
-<div class="main">
-    <div class="header">
-        <ul id="pages">
-            <li>
-                <a href="/">home</a>
-            </li>
-            <li>
-                <a href="/#/tags">tags</a>
-            </li>
-            <li>
-                <a href="/#/archive">archive</a>
-            </li>
-        </ul>
-    </div>
-    <div class="wrap-header">
-        <h1>
-        <a href="/" id="title"></a>
-        </h1>
-    </div>
-    <div class="innermain" id="main">
-    </div>
-    <div class="footer">
-        <p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
-    </div>
-</div>
-<script src="main.js"></script>
-<script id="itemTemplate" type="text/mustache">
-    {{#posts}}
-    <div class="item">
-        <div class="date">
-            <div class="little">
-            </div>
-            {{date}}
-        </div>
-        <div class="title">
-            <h2>
-                <a href="{{path}}">{{title}}</a>
-            </h2>
-        </div>
-    </div>
-    {{/posts}}
-    <ul class="pages">
-        Pages:
-        {{#pages}}
-            <li>
-            {{#select}}
-                <span class="selected">{{num}}</span>
-            {{/select}}
-            {{^select}}
-                <a href="{{path}}">{{num}}</a>
-            {{/select}}
-            </li>
-        {{/pages}}
-    </ul>
-</script>
-<script id="archiveTemplate" type="text/mustache">
-    {{#group}}
-    {{name}}
-    {{#posts}}
-    <div class="archive">
-    <span>{{date}}</span>
-    <a href="{{path}}">{{title}}</a>
-    </div>
-    {{/posts}}
-    {{/group}}
-</script>
-<script id="pagesTemplate" type="text/mustache">
-    {{#pages}}
-    <li>
-        <a href="{{path}}">{{title}}</a>
-    </li>
-    {{/pages}}
-</script>
-<script id="tagsTemplate" type="text/mustache">
-    <ul style="list-style: none">
-        {{#tags}}
-        <li style="display:inline; margin: 15px;">
-            <a href="{{path}}" style="font-size: {{size}}%">{{name}}</a>
+  <a class="skip" href="#main">Skip to main content</a>
+  <div class="layout">
+    <aside class="profile" aria-label="Personal information">
+      <!-- To use a portrait, replace the initial below with:
+           <img src="assets/avatar.jpg" alt="Portrait of Tongbao Chen">
+      -->
+      <div class="avatar" aria-label="Name initial"><span lang="zh-CN">陈</span></div>
+      <h1>Tongbao Chen</h1>
+      <p class="name-cn" lang="zh-CN">陈通宝</p>
+      <p class="role">Lecturer · Master's Supervisor</p>
+      <p class="affiliation">Guangdong Polytechnic<br>Normal University</p>
+      <ul class="details">
+        <li><span class="icon" aria-hidden="true">✉</span>
+          <a href="mailto:tongbaochen@gpnu.edu.cn">tongbaochen@gpnu.edu.cn</a>
         </li>
-        {{/tags}}
-    </ul>
-</script>
-<script>
-$(document).ready(function() {
-    $.ajax({
-        url: "main.json",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            $("#title").html(data.name);
-            data.posts.sort(function(a, b){
-                if (a.date > b.date)
-                    return -1;
-                if (a.date < b.date)
-                    return 1;
-                return 0;
-            });
-            console.log(data.posts);
-            var per = data.number_of_posts_per_page;
-            var n = data.posts.length;
-            var num = Math.floor((n-1)/per)+1;
-            var arr = [];
-            var tmp = [];
-            for (var i = 0; i < n; ++i) {
-                if (i != 0 && i % per == 0) {
-                    arr.push(tmp)
-                    tmp = [];
-                }
-                tmp.push(data.posts[i]);
-            }
-            if (tmp.length > 0)
-                arr.push(tmp);
-            var pages = [{"select": true, "num": 1, "path": "#/page/1"}];
-            for (var i = 1; i < num; ++i)
-                pages.push({"select": false, "num": i+1, "path": "#/page/"+(i+1)});
-            var itemTemplate = Hogan.compile($("#itemTemplate").html());
-            var itemHtml = itemTemplate.render({"posts": arr[0], "pages": pages});
-            $("#main").html(itemHtml);
-            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
-            var pagesHtml = pagesTemplate.render({"pages": data.pages});
-            $("#pages").append(pagesHtml);
-            var App = Spine.Controller.sub({
-                el: $("#main"),
-                init: function() {
-                    this.routes({
-                        "/page/:page": function(page) {this.go(page);},
-                        "/tags": function() {this.tags();},
-                        "/tag/:tag": function(param) {this.tag(param);},
-                        "/archive": function() {this.archive();}
-                    });
-                    Spine.Route.setup();
-                },
-                go: function(page) {
-                    page = Math.floor(page.page);
-                    for (var i = 0; i < pages.length; ++i)
-                        pages[i].select = false;
-                    pages[page-1].select = true;
-                    var tmppages = pages;
-                    if (page > 2 && pages.length > 4)
-                        tmppages = pages.slice(page-3);
-                    if (tmppages.length > 5)
-                        tmppages = tmppages.slice(0, 5);
-                    if (pages.length > 4 && tmppages.length < 5)
-                        tmppages = pages.slice(-5);
-                    itemHtml = itemTemplate.render({"posts": arr[page-1], "pages": tmppages});
-                    $("#main").html(itemHtml);
-                },
-                tags: function() {
-                    var ts = {};
-                    var posts = data.posts;
-                    var tf = function() {
-                        for (var i = 0; i < posts.length; ++i) {
-                            var tmp = posts[i].tags.split(" ");
-                            for (var j = 0; j < tmp.length; ++j) {
-                                if (tmp[j].length == 0)
-                                    continue;
-                                if (!(tmp[j] in ts))
-                                    ts[tmp[j]] = 0;
-                                ts[tmp[j]]++;
-                            }
-                        }
-                    }
-                    tf();
-                    posts = data.pages;
-                    tf();
-                    var ans = [];
-                    for (var k in ts) {
-                        ans.push({"name": "#"+k, "size": 100+Math.sqrt(ts[k]-1)*30, "path": "#/tag/"+k});
-                    }
-                    var tagsTemplate = Hogan.compile($("#tagsTemplate").html());
-                    var tagsHtml = tagsTemplate.render({"tags": ans});
-                    $("#main").html(tagsHtml);
-                },
-                tag: function(param) {
-                    var tag = param.tag;
-                    var group = [{"name": "#"+tag}];
-                    var posts = [];
-                    for (var i = 0; i < data.posts.length; ++i) {
-                        var tmp = data.posts[i].tags.split(" ");
-                        if (tmp.indexOf(tag) != -1)
-                            posts.push(data.posts[i]);
-                    }
-                    for (var i = 0; i < data.pages.length; ++i) {
-                        var tmp = data.pages[i].tags.split(" ");
-                        if (tmp.indexOf(tag) != -1)
-                            posts.push(data.pages[i]);
-                    }
-                    group[0].posts = posts;
-                    var tmpTemplate = Hogan.compile($("#archiveTemplate").html());
-                    var tmpHtml = tmpTemplate.render({"group": group});
-                    $("#main").html(tmpHtml);
-                },
-                archive: function() {
-                    var group = [];
-                    var posts = data.posts;
-                    var now = -1;
-                    var name = "";
-                    for (var i = 0; i < posts.length; ++i) {
-                        if (name != posts[i].date.slice(0,4)) {
-                            name = posts[i].date.slice(0,4);
-                            group.push({"name": name, "posts": []});
-                            now++;
-                        }
-                        group[now].posts.push(posts[i]);
-                    }
-                    var tmpTemplate = Hogan.compile($("#archiveTemplate").html());
-                    var tmpHtml = tmpTemplate.render({"group": group});
-                    $("#main").html(tmpHtml);
-                }
-            });
-            new App();
-        },
-        error: function(e) {
-            console.log("init error");
-        }
-    });    
-});
-</script>
+        <li><span class="icon" aria-hidden="true">▤</span>
+          <a href="https://scholar.google.com/citations?hl=en&amp;user=vcmuh8YAAAAJ">Google Scholar</a>
+        </li>
+        <li><span class="icon" aria-hidden="true">◎</span>
+          <a href="https://www.scholat.com/tongbaochen.cn">SCHOLAT</a>
+        </li>
+        <li><span class="icon" aria-hidden="true">⌂</span>
+          <a href="https://jkxy.gpnu.edu.cn/info/1248/6959.htm">University Profile</a>
+        </li>
+      </ul>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#grants">Grants</a>
+        <a href="#patents">Patents</a>
+        <a href="#students">Students</a>
+        <a href="#education">Education</a>
+        <a href="#service">Service</a>
+      </nav>
+      <p class="profile-note">
+        Multimodal intelligence<br>
+        Trustworthy and privacy-aware AI
+      </p>
+    </aside>
+
+    <main id="main">
+      <section id="about">
+        <h2>😊 About Me</h2>
+        <p class="intro">
+          I am <strong>Tongbao Chen <span lang="zh-CN">（陈通宝）</span></strong>,
+          a <strong>Lecturer and master's supervisor</strong> at
+          <strong>Guangdong Polytechnic Normal University</strong>.
+        </p>
+        <p>
+          My research centers on <strong>multimodal intelligence and
+          trustworthy AI</strong>. My interests include multimodal
+          representation learning, cross-modal retrieval, video understanding,
+          affective computing, AI security, federated learning, and privacy
+          protection.
+        </p>
+        <p>
+          In multimedia understanding, I investigate temporal sentence
+          grounding, video corpus moment retrieval, and multimodal emotion
+          recognition. My work draws on graph representation learning,
+          contrastive learning, curriculum learning, and cross-modal semantic
+          modeling. My broader research interests also include the integrity
+          verification of large language models and privacy-aware
+          collaborative learning.
+        </p>
+        <p>
+          I received my master's degree from the University of Chinese
+          Academy of Sciences in 2020 and my Ph.D. from Macau University
+          of Science and Technology in 2024. My publications appear in
+          journals including <em>IEEE Transactions on Circuits and Systems
+          for Video Technology</em>, <em>IEEE Transactions on Multimedia</em>,
+          <em>Engineering Applications of Artificial Intelligence</em>,
+          <em>Neurocomputing</em>, and <em>Computer Networks</em>.
+        </p>
+        <div class="callout">
+          <strong>Looking for research opportunities?</strong>
+          I welcome motivated master's students and undergraduates interested
+          in multimodal learning, trustworthy AI, and related topics.
+          Please contact me at
+          <a href="mailto:tongbaochen@gpnu.edu.cn">tongbaochen@gpnu.edu.cn</a>.
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>🔬 Research Interests</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <h3>Multimodal Representation Learning</h3>
+            <p>Semantic alignment and representation learning across text,
+              audio, and visual modalities.</p>
+          </div>
+          <div class="research-card">
+            <h3>Cross-Modal Retrieval &amp; Video Understanding</h3>
+            <p>Text-video retrieval, temporal sentence grounding, and
+              video corpus moment retrieval.</p>
+          </div>
+          <div class="research-card">
+            <h3>Affective Computing</h3>
+            <p>Multimodal emotion recognition with complete and missing
+              modalities.</p>
+          </div>
+          <div class="research-card">
+            <h3>AI Security</h3>
+            <p>Trustworthy AI, large language model fingerprinting, and
+              model integrity verification.</p>
+          </div>
+          <div class="research-card">
+            <h3>Federated Learning</h3>
+            <p>Collaborative learning and client selection strategies
+              for distributed machine learning.</p>
+          </div>
+          <div class="research-card">
+            <h3>Privacy Protection</h3>
+            <p>Privacy-aware learning and secure use of data and
+              AI models.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="news">
+        <h2>🔥 News</h2>
+        <ul class="timeline">
+          <li>
+            <span class="date">Recent</span>
+            <span>🎉 Awarded funding under
+              <strong lang="zh-CN">国家自然科学基金青年科学基金项目（C类）</strong>.</span>
+          </li>
+          <li>
+            <span class="date">2026</span>
+            <span>🎉 Selected for
+              <strong lang="zh-CN">广东省2026—2027年度青年科技人才培育计划</strong>.</span>
+          </li>
+          <li>
+            <span class="date">2026</span>
+            <span>🎉 Awarded funding under
+              <strong lang="zh-CN">2026年河源市社会发展科技计划项目</strong>.</span>
+          </li>
+          <li>
+            <span class="date">Apr. 2026</span>
+            <span>📖 Our review on multimodal emotion recognition with complete
+              and missing modalities was published in
+              <strong>Engineering Applications of Artificial Intelligence</strong>.
+              <a href="https://doi.org/10.1016/j.engappai.2026.114127">Read the paper</a>.</span>
+          </li>
+          <li>
+            <span class="date">Apr. 2025</span>
+            <span>Started the university-funded project
+              <strong lang="zh-CN">多模态高层语义驱动的视频时序定位方法研究</strong>.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="publications">
+        <h2>📝 Selected Publications</h2>
+        <p class="small">
+          My name is highlighted in bold. Please visit
+          <a href="https://scholar.google.com/citations?hl=en&amp;user=vcmuh8YAAAAJ">Google Scholar</a>
+          for the full publication list.
+        </p>
+
+        <article class="publication">
+          <div class="badge">EAAI<br>2026</div>
+          <div>
+            <h3 class="paper-title">
+              <a href="https://doi.org/10.1016/j.engappai.2026.114127">
+                Multimodal emotion recognition from complete modality to
+                missing modality based on text, audio, and visual: A review
+              </a>
+            </h3>
+            <p class="authors">Huihui Li, Huiqi Han, Chunlin Xu,
+              <strong>Tongbao Chen</strong>, Xiaoyong Liu, Guihua Wen.</p>
+            <p class="venue"><em>Engineering Applications of Artificial Intelligence</em>,
+              170: 114127, 2026.</p>
+            <div class="paper-links">
+              <a href="https://doi.org/10.1016/j.engappai.2026.114127">DOI</a>
+              <a href="https://www.sciencedirect.com/science/article/pii/S0952197626004082">Publisher</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">IEEE TCSVT<br>Vol. 33</div>
+          <div>
+            <h3 class="paper-title">SaGCN: Semantic-aware graph calibration network for temporal sentence grounding</h3>
+            <p class="authors"><strong>Tongbao Chen</strong>, Wenmin Wang,
+              Kangrui Han, Huijuan Xu.</p>
+            <p class="venue"><em>IEEE Transactions on Circuits and Systems
+              for Video Technology</em>, 33(6): 3003–3016.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=SaGCN%3A+Semantic-aware+graph+calibration+network+for+temporal+sentence+grounding">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">IEEE TMM<br>2024</div>
+          <div>
+            <h3 class="paper-title">Cross-Modality Knowledge Calibration Network for Video Corpus Moment Retrieval</h3>
+            <p class="authors"><strong>Tongbao Chen</strong>, Wenmin Wang,
+              Zhe Jiang, Ruochen Li, Bingshu Wang.</p>
+            <p class="venue"><em>IEEE Transactions on Multimedia</em>,
+              26: 3799–3813, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=Cross-Modality+Knowledge+Calibration+Network+for+Video+Corpus+Moment+Retrieval">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">Neurocomputing<br>2024</div>
+          <div>
+            <h3 class="paper-title">SgLFT: Semantic-guided Late Fusion Transformer for video corpus moment retrieval</h3>
+            <p class="authors"><strong>Tongbao Chen</strong>, Wenmin Wang,
+              Minglu Zhao, Ruochen Li, Zhe Jiang, Cheng Yu.</p>
+            <p class="venue"><em>Neurocomputing</em>, Article 128029, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=SgLFT%3A+Semantic-guided+Late+Fusion+Transformer+for+video+corpus+moment+retrieval">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">Computer<br>Networks<br>2024</div>
+          <div>
+            <h3 class="paper-title">A Comprehensive Survey on Client Selection Strategies in Federated Learning</h3>
+            <p class="authors">Jian Li, <strong>Tongbao Chen</strong>, Shaohua Teng.</p>
+            <p class="venue"><em>Computer Networks</em>, 251: 110663, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=A+Comprehensive+Survey+on+Client+Selection+Strategies+in+Federated+Learning">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">IEEE TMM<br>2024</div>
+          <div>
+            <h3 class="paper-title">TA2V: Text-Audio Guided Video Generation</h3>
+            <p class="authors">Minglu Zhao, Wenmin Wang,
+              <strong>Tongbao Chen</strong>, Rui Zhang, Ruochen Li.</p>
+            <p class="venue"><em>IEEE Transactions on Multimedia</em>, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=TA2V%3A+Text-Audio+Guided+Video+Generation">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">Neurocomputing<br>2024</div>
+          <div>
+            <h3 class="paper-title">Ultrahigh-definition video quality assessment: A new dataset and benchmark</h3>
+            <p class="authors">Ruochen Li, Wenmin Wang, Huanqiang Hu,
+              <strong>Tongbao Chen</strong>, Minglu Zhao.</p>
+            <p class="venue"><em>Neurocomputing</em>, 586: 127633, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=Ultrahigh-definition+video+quality+assessment%3A+A+new+dataset+and+benchmark">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication">
+          <div class="badge">World Wide Web<br>2024</div>
+          <div>
+            <h3 class="paper-title">Discrete cross-modal hashing with relaxation and label semantic guidance</h3>
+            <p class="authors">Shaohua Teng, Wenbiao Huang, Naiqi Wu,
+              Guanglong Du, <strong>Tongbao Chen</strong>, Wei Zhang, Luyao Teng.</p>
+            <p class="venue"><em>World Wide Web</em>, 27, Article 4, 2024.</p>
+            <div class="paper-links">
+              <a href="https://scholar.google.com/scholar?hl=en&amp;q=Discrete+cross-modal+hashing+with+relaxation+and+label+semantic+guidance">Scholar</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="grants">
+        <h2>📌 Research Grants</h2>
+        <!-- Formal project titles, award numbers, and roles can be added
+             when confirmed. Program names are retained in Chinese. -->
+        <div class="grant">
+          <h3><span lang="zh-CN">国家自然科学基金青年科学基金项目（C类）</span>
+            <span class="tag">Awarded</span></h3>
+        </div>
+        <div class="grant">
+          <h3><span lang="zh-CN">广东省2026—2027年度青年科技人才培育计划</span>
+            <span class="tag">Selected</span></h3>
+        </div>
+        <div class="grant">
+          <h3><span lang="zh-CN">2026年河源市社会发展科技计划项目</span>
+            <span class="tag">Awarded</span></h3>
+        </div>
+        <div class="grant">
+          <h3><span lang="zh-CN">多模态高层语义驱动的视频时序定位方法研究</span>
+            <span class="tag">PI</span></h3>
+          <p>Talent recruitment research grant, Guangdong Polytechnic
+            Normal University · Starting April 2025 · RMB 150,000.</p>
+        </div>
+      </section>
+
+      <section id="patents">
+        <h2>💡 Selected Patent Publications</h2>
+        <p class="small">
+          Selected Chinese invention patent publications.
+          Titles below are English translations of the original Chinese titles.
+        </p>
+        <!-- Publication numbers ending in A do not establish grant status.
+             Inventor order and grant details are intentionally omitted. -->
+        <ol class="patents">
+          <li>
+            <h3 class="patent-title">
+              Wind Turbine Surface Damage and Corrosion Detection Method
+              Based on an Improved YOLOv8 Model
+            </h3>
+            <p class="patent-meta">Chinese patent publication · CN118505641A</p>
+          </li>
+          <li>
+            <h3 class="patent-title">
+              Rotated Object Detection Method for Remote Sensing Images
+            </h3>
+            <p class="patent-meta">Chinese patent publication · CN120147865A</p>
+          </li>
+          <li>
+            <h3 class="patent-title">
+              Electronic-Nose-Based Multi-Gas Classification Method,
+              System, and Medium
+            </h3>
+            <p class="patent-meta">Chinese patent publication · CN121656484A</p>
+          </li>
+          <li>
+            <h3 class="patent-title">
+              Large Language Model Fingerprint Construction Method and
+              System Based on Maximally Activated Component Coverage
+            </h3>
+            <p class="patent-meta">Chinese patent publication · CN121706145A</p>
+          </li>
+          <li>
+            <h3 class="patent-title">
+              Large Language Model Integrity Verification Method and System
+              Based on Statistical Testing of Output Feature Distributions
+            </h3>
+            <p class="patent-meta">Chinese patent publication · CN121958932A</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="students">
+        <h2>🎓 Prospective Students &amp; Collaboration</h2>
+        <div class="callout">
+          <p>I supervise <strong>master's students</strong> in the following programs:</p>
+          <ul class="student-programs">
+            <li><strong>Computer Technology</strong></li>
+            <li><strong>Pattern Recognition and Intelligent Systems</strong></li>
+          </ul>
+          <p>
+            I welcome students interested in multimodal learning, cross-modal
+            retrieval, video understanding, affective computing, AI security,
+            federated learning, and privacy protection.
+            Undergraduate students interested in research training,
+            final-year projects, or research collaboration are also
+            welcome to get in touch.
+          </p>
+          <p>
+            If you would like to discuss a potential opportunity, please
+            email a brief introduction, your research interests, and any
+            relevant project experience to
+            <a href="mailto:tongbaochen@gpnu.edu.cn">tongbaochen@gpnu.edu.cn</a>.
+          </p>
+        </div>
+        <p class="small" style="margin-top: 10px;">
+          Official program titles, eligibility requirements, and admission
+          arrangements are subject to the university's annual admissions
+          notices and program catalog.
+        </p>
+      </section>
+
+      <section id="education">
+        <h2>📖 Education</h2>
+        <ul class="timeline">
+          <li>
+            <span class="date">2021–2024</span>
+            <span><strong>Macau University of Science and Technology</strong><br>Ph.D.</span>
+          </li>
+          <li>
+            <span class="date">2017–2020</span>
+            <span><strong>University of Chinese Academy of Sciences</strong><br>Master's degree</span>
+          </li>
+          <li>
+            <span class="date">2012–2016</span>
+            <span><strong>Guangdong University of Foreign Studies</strong><br>Bachelor's degree</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="experience">
+        <h2>💼 Experience</h2>
+        <ul class="timeline">
+          <li>
+            <span class="date">Current</span>
+            <span><strong>Guangdong Polytechnic Normal University</strong><br>
+              Lecturer and Master's Supervisor</span>
+          </li>
+          <li>
+            <span class="date">Previously</span>
+            <span><strong>Guangdong University of Technology</strong><br>
+              Faculty Member</span>
+          </li>
+          <li>
+            <span class="date">Jun.–Oct.<br>2019</span>
+            <span><strong>Tencent</strong><br>
+              WeChat Group, Pattern Recognition Center</span>
+          </li>
+          <li>
+            <span class="date">Dec. 2018–<br>Jun. 2019</span>
+            <span><strong>JD AI Lab</strong><br>
+              Speech, Semantics, and Dialogue Laboratory</span>
+          </li>
+          <li>
+            <span class="date">Jul.–Oct.<br>2016</span>
+            <span><strong>Accenture</strong></span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="service">
+        <h2>🤝 Academic &amp; Professional Service</h2>
+        <h3>Journal Reviewer</h3>
+        <ul class="service-list">
+          <li>IEEE Transactions on Neural Networks and Learning Systems (TNNLS)</li>
+          <li>IEEE Transactions on Multimedia (TMM)</li>
+          <li>IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</li>
+          <li>Pattern Recognition (PR)</li>
+          <li>Engineering Applications of Artificial Intelligence (EAAI)</li>
+          <li>Neurocomputing</li>
+        </ul>
+        <h3>Professional Appointment</h3>
+        <p>
+          Appointed Science and Technology Expert,
+          Jieyang Young Science and Technology Association.
+        </p>
+      </section>
+
+      <section id="teaching">
+        <h2>📚 Teaching</h2>
+        <p>Courses taught:</p>
+        <ul class="service-list">
+          <li>Computer Networks</li>
+          <li>Artificial Intelligence</li>
+          <li>Software Engineering</li>
+        </ul>
+      </section>
+
+      <footer>
+        © 2026 Tongbao Chen <span lang="zh-CN">陈通宝</span> · Academic Homepage<br>
+        Last updated: October 23, 2026
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
